@@ -253,11 +253,14 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-      - name: '运行 【环球挑战赛脚本】'
+      - name: '运行 【百变大咖秀脚本】'
         run: |
-          sed -ri -e "s/const inviteCodes =/& ['Q0M2S3hZVmlKUEJ'+'3bTd1Zy8wZG5TZz09'];/g"\
-            -e "s/const randomCount =/&3;/g" jd_global.js
-          node jd_global.js
+          curl -O https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_entertainment.js > /dev/null 2>&1
+          sed -ri -e "s/let helpAuthor = true/let helpAuthor = false/g"\
+            -e "s/('pt_key': )\\$\.UserName/\1'jd_' + Buffer.from(\$.UserName.repeat(3)).toString('hex').slice(0, 13).toLowerCase()/g"\
+            -e "s/await notify\.sendNotify/console.log/g"\
+            -e "s/\(([\`\"\'])(\\\x47\\\x49\\\x54\\\x48\\\x55\\\x42|GI.HUB)\\1\)/('GxIxTxHxUxB')/g" jd_entertainment.js
+          node jd_entertainment.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
@@ -272,15 +275,32 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          JDGLOBAL_SHARECODES: ${{ secrets.JDGLOBAL_SHARECODES }}
-      - name: '运行 【百变大咖秀脚本】'
+      - name: '运行 【粉丝互动脚本】'
         run: |
-          curl -O https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_entertainment.js > /dev/null 2>&1
+          curl -O https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js > /dev/null 2>&1
           sed -ri -e "s/let helpAuthor = true/let helpAuthor = false/g"\
-            -e "s/('pt_key': )\\$\.UserName/\1'jd_' + Buffer.from(\$.UserName.repeat(3)).toString('hex').slice(0, 13).toLowerCase()/g"\
-            -e "s/await notify\.sendNotify/console.log/g"\
-            -e "s/\(([\`\"\'])(\\\x47\\\x49\\\x54\\\x48\\\x55\\\x42|GI.HUB)\\1\)/('GxIxTxHxUxB')/g" jd_entertainment.js
-          node jd_entertainment.js
+            -e "s/\(([\`\"\'])(\\\x47\\\x49\\\x54\\\x48\\\x55\\\x42|GI.HUB)\\1\)/('GxIxTxHxUxB')/g" jd_fanslove.js
+          node jd_fanslove.js
+        env:
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
+          JD_DEBUG: ${{ secrets.JD_DEBUG }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          QQ_SKEY: ${{ secrets.QQ_SKEY }}
+          QQ_MODE: ${{ secrets.QQ_MODE }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+      - name: '运行 【华硕-爱奇艺脚本】'
+        run: |
+          curl -O https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_asus_iqiyi.js > /dev/null 2>&1
+          sed -ri -e "s/let helpAuthor = true/let helpAuthor = false/g"\
+            -e "s/\(([\`\"\'])(\\\x47\\\x49\\\x54\\\x48\\\x55\\\x42|GI.HUB)\\1\)/('GxIxTxHxUxB')/g" jd_asus_iqiyi.js
+          node jd_asus_iqiyi.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
