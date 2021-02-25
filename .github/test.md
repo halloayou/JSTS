@@ -1,3 +1,3 @@
-```bash
-echo "test"
+```sh
+echo "test!"
 ```
