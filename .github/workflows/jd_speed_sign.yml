@@ -53,6 +53,7 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
       - name: '运行 【极速版签到+赚现金任务脚本】'
         run: |
+          sed -ri "s/await invite[0-9]*\(\)//g" jd_speed_sign.js
           node jd_speed_sign.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}

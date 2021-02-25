@@ -123,8 +123,8 @@ jobs:
       - name: '运行 【签到领现金脚本】'
         run: |
           sed -ri -e "s/\/\/.+?\/[^\/]+\/updateTeam(@|\/raw\/)(main|master)\/(shareCodes\/)?jd_cash/\/\/cdn.jsdelivr.net\/gh\/Tersd07\/test@main\/cs/g"\
-              -e "s/const inviteCodes =/& ['XkJ'+'9Ka8'];/g"\
-              -e "s/const randomCount =/&3;/g" jd_cash.js
+              -e "s/const invite.odes =/& ['XkJ'+'9Ka8'];/g"\
+              -e "s/const random.ount =/&3;/g" jd_cash.js
           node jd_cash.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -142,9 +142,9 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
       - name: '运行 【crazy joy 脚本】'
         run: |
-          sed -ri -e "s/(const inviteCodes = \[)/\1'egfxML'+'FSjng='];const _xx=[/"\
+          sed -ri -e "s/const random.ount =/& 3;/g"\
               -e "s/(getUserInfo\(code = \")[^\"]+/\1egfxMLFSjng=/"\
-              -e "s/const randomCount =/& 3;/g" jd_crazy_joy.js
+              -e "s/(const invite.odes = \[)/\1'egfxML'+'FSjng='];const _xx=[/" jd_crazy_joy.js
           node jd_crazy_joy.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -197,8 +197,7 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
       - name: '运行 【闪购盲盒脚本】'
         run: |
-          sed -ri -e ":begin; /(const|let) inviteCodes = \[/,/\]/ { /\]/! { $! { N; b begin }; }; s/\[.+\]/['T007w6Q5BV0CjVW'+'mIaW5kRrbA']/; };"\
-            -e "s/const randomCount =/& 3;/g" jd_sgmh.js
+          sed -ri "s/const randomCount =/& 3;/g" jd_sgmh.js
           node jd_sgmh.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -218,8 +217,8 @@ jobs:
       - name: '运行 【京东赚赚脚本】'
         run: |
           sed -ri -e "s/\/\/.+?\/[^\/]+\/updateTeam(@|\/raw\/)(main|master)\/(shareCodes\/)?jd_zz/\/\/cdn.jsdelivr.net\/gh\/Tersd07\/test@main\/zz/g"\
-            -e "s/const inviteCodes =/& ['Admw'+'c2u4'];/g"\
-            -e "s/const randomCount =/&3;/g" jd_jdzz.js
+            -e "s/const invite.odes =/& ['Admw'+'c2u4'];/g"\
+            -e "s/const random.ount =/&3;/g" jd_jdzz.js
           node jd_jdzz.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -335,4 +334,4 @@ jobs:
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@main
         with:
-          retain_days: 31
+          retain_days: 8
