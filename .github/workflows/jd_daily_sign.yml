@@ -311,26 +311,6 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-      - name: '运行 【华硕-爱奇艺脚本】'
-        run: |
-          curl -O https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_asus_iqiyi.js > /dev/null 2>&1
-          sed -ri -e "s/let helpAuthor = true/let helpAuthor = false/g"\
-            -e "s/\(([\`\"\'])(\\\x47\\\x49\\\x54\\\x48\\\x55\\\x42|GI.HUB)\\1\)/('GxIxTxHxUxB')/g" jd_asus_iqiyi.js
-          node jd_asus_iqiyi.js
-        env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
-          JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          QQ_SKEY: ${{ secrets.QQ_SKEY }}
-          QQ_MODE: ${{ secrets.QQ_MODE }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@main
         with:
