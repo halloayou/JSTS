@@ -178,9 +178,9 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-      - name: '运行 【小鸽有礼2脚本】'
+      - name: '运行 【她的节享京豆脚本】'
         run: |
-          node jd_xgyl.js
+          node jd_firecrackers.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
@@ -195,6 +195,7 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          FIRECRACKERS_NOTITY_BEAN: ${{ secrets.FIRECRACKERS_NOTITY_BEAN }}
       - name: '运行 【闪购盲盒脚本】'
         run: |
           sed -ri "s/const randomCount =/& 3;/g" jd_sgmh.js
