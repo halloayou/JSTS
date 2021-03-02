@@ -26,8 +26,8 @@ async function main() {
   if ($.body) {
     $.body = $.body.replace(
       //仅在 0 时通知。
-      'await notify.sendNotify(',
-      `if ([0, 24].includes(new Date().getTimezoneOffset() / 60 + 8 + new Date().getHours()))
+      /await notify\.sendNotify/g,
+      `if((new Date().getUTCHours() + 8) % 24 < 6))
         $&`
     );
     eval($.body);
