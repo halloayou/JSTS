@@ -36,7 +36,6 @@ jobs:
           npm install
       - name: '运行 【京豆签到脚本】'
         run: |
-          sed -ri "s/await notify/if((new Date().getUTCHours() + 8) % 24 < 6) &/g" jd_bean_sign.js
           node jd_bean_sign.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
